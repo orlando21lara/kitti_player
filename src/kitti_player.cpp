@@ -25,16 +25,24 @@
 #include <sstream>
 #include <string>
 #include <ros/ros.h>
+#include <ros/console.h>
+
+#include <boost/format.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/locale.hpp>
 #include <boost/program_options.hpp>
 #include <boost/progress.hpp>
 #include <boost/tokenizer.hpp>
+
 #include <cv_bridge/cv_bridge.h>
 #include <image_transport/image_transport.h>
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/highgui/highgui_c.h>
+#include <opencv2/imgcodecs/legacy/constants_c.h>
+
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
@@ -942,6 +950,7 @@ int main(int argc, char **argv)
     publisher_GT_RTK = node.advertise<visualization_msgs::MarkerArray> ("/kitti_player/GT_RTK", 1);
 
     // This is the main KITTI_PLAYER Loop
+    std::cout << "Total Entries: " << total_entries << std::endl;
     do
     {
         // this refs #600 synchMode
@@ -1050,7 +1059,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1074,7 +1083,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1132,7 +1141,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1156,7 +1165,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1186,7 +1195,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1208,7 +1217,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
@@ -1296,7 +1305,7 @@ int main(int argc, char **argv)
                 ifstream timestamps(str_support.c_str());
                 if (!timestamps.is_open())
                 {
-                    ROS_ERROR_STREAM("Fail to open " << timestamps);
+                    ROS_ERROR_STREAM("Fail to open " << str_support);
                     node.shutdown();
                     return -1;
                 }
